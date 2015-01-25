@@ -2,7 +2,7 @@ requirejs.config({
     paths: {
         'angular': 'lib/angular',
         'jquery': 'lib/jquery-1.9.1',
-        'bootstrap': 'dist/js/bootstrap'
+        'bootstrap': 'lib/bootstrap/js/bootstrap'
     },
     shim: {
         'angular': {
