@@ -1,0 +1,22 @@
+[  
+   {  
+      "newName":"Task 1",
+      "checked":false
+   },
+   {  
+      "newName":"Task2",
+      "checked":false
+   },
+   {  
+      "newName":"Finished task",
+      "checked":true
+   },
+   {  
+      "newName":"unFinished Task",
+      "checked":false
+   },
+   {  
+      "newName":"Task lalala",
+      "checked":true
+   }
+]

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link rel="stylesheet" href="dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="dist/css/bootstrap-theme.css" />
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        .Del {
+            cursor: pointer;
+        }
+
+        .top {
+            margin-top: 15px;
+        }
+
+        .ng-cloak {
+            display: none;
+        }
+    </style>
+    <script src="require.js" data-main="main"></script>
+
+</head>
+<body>
+    <form ng-controller="FormController" class="ng-cloak" ng-submit=" AddItem()">
+        <div class="row top">
+            <div class="col-lg-offset-5">
+                <h2 style="padding-bottom:15px">What should be done?</h2>
+            </div>
+            <div class="col-lg-6 col-lg-offset-3">
+                <div id="btn-group1" class="btn-group" role="group" aria-label="...">
+                    <button type="button" ng-class="{active:isActive('All')}" ng-click="SelectOnChange('All')" class=" btn btn-default ">All</button>
+                    <button type="button" ng-class="{active:isActive('Finished')}" ng-click="SelectOnChange('Finished')" class="btn btn-default ">Finished</button>
+                    <button type="button" ng-class="{active:isActive('NotFinished')}" ng-click="SelectOnChange('NotFinished')" class="btn btn-default ">NotFinished</button>
+                </div>
+
+                <button class=" btn btn-default col-lg-offset-6" type="button" id="ButtonSort" ng-click="SortFunction()" value="Sort up">
+                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                </button>
+
+                <span ng-if="mustShow==1" class="iconSort glyphicon glyphicon-sort-by-attributes"></span>
+
+                <span ng-if="mustShow==2" class="iconSort glyphicon glyphicon-sort-by-attributes-alt"></span>
+
+            </div>
+        </div>
+        <div id="RowsForSort">
+            <!--Заполняется программно-->
+            <div ng-repeat="Task in Tasks|orderBy:predicate:reverse|filter :filterFunction" class="row top ">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="checkbox" id={{Tasks.indexOf(Task)}} ng-model="Task.checked" />
+                        </span>
+                        <label for={{Tasks.indexOf(Task)}} class="form-control"><input type="hidden">{{Task.name}}</label>
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Дія <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#"><span class="Del" ng-click="removeTask(Task)" />DELETE</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--//-->
+        </div>
+        <div class="row top">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="input-group">
+                    <input type="text" ng-model="NewNameNg" class="form-control" ng-hide="HideWithFilter" placeholder="New task here...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-hide="HideWithFilter" ng-click="AddItem()">ADD</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+    </form>
+
+    <!-- <script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular.js"></script>-->
+
+
+
+
+</body>
+
+</html>
