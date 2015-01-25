@@ -57,7 +57,7 @@
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <input type="checkbox" id={{Tasks.indexOf(Task)}} ng-model="Task.checked" />
+                            <input type="checkbox" id={{Tasks.indexOf(Task)}} ng-model="Task.checked" ng-change="toglleCheck(Task)" />
                         </span>
                         <label for={{Tasks.indexOf(Task)}} class="form-control"><input type="hidden">{{Task.name}}</label>
 

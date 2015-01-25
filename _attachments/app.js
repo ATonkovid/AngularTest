@@ -1,24 +1,30 @@
-define(['angular'], function (angular, $) {
-    angular.module('myAppName', [])
-      .controller('FormController', function ($scope, $http) {
+define(['angular', 'task'], function (angular, $, task) {
+    angular.module('myAppName')
+      .controller('FormController', function ($scope, Task) {
 
-          $http.get('tasks.js').
-            success(function (data, status, headers, config) {
-                $scope.Tasks = data;
-            }).
-            error(function (data, status, headers, config) {
-            });
+          Task.get().then(function (tasks) {
+              $scope.Tasks = tasks;
+          });
 
           $scope.Filter = "";
           $scope.Tasks = [];
+          $scope.toglleCheck = function (task) {
+              Task.put(task);
+          }
           $scope.AddItem = function () {
-              var index = this.Tasks.push({ name: this.NewNameNg, checked: false });
-              this.NewNameNg = "";
+              var that = this;
+              Task.post({ name: this.NewNameNg, checked: false }).then(function (data) {
+                  var index = that.Tasks.push(data);
+                  that.NewNameNg = "";
+              });
               return false;
           };
           $scope.removeTask = function (TaskToRemove) {
-              var index = this.Tasks.indexOf(TaskToRemove);
-              this.Tasks.splice(index, 1);
+              var that = this;
+              Task.delete(TaskToRemove._id, TaskToRemove._rev).then(function () {
+                  var index = that.Tasks.indexOf(TaskToRemove);
+                  that.Tasks.splice(index, 1);
+              });
           };
           $scope.SortFunction = function () {
               this.predicate = 'name';
