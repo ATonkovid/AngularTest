@@ -22,7 +22,7 @@ requirejs.config({
     }
 });
 
-define(['jquery', 'angular', 'app', 'sample'], function ($, angular, app, sample) {
+define(['jquery', 'bootstrap', 'angular', 'app', 'sample'], function ($, bootstrap, angular, app, sample) {
     $(function () {
         angular.bootstrap('body', ['myAppName']);
         console.log(sample);
