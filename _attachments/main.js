@@ -6,7 +6,8 @@ requirejs.config({
         'bootstrap': 'lib/bootstrap/js/bootstrap',
 		'CouchEntity': 'CouchOrm/CouchEntity',
 		'CouchEntityFactory': 'CouchOrm/CouchEntityFactory',
-		'task': 'entities/task'
+		'task': 'entities/task',
+		'comment': 'entities/comment'
     },
     shim: {
         'angular': {
@@ -14,23 +15,15 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery']
-        },
-        'forShim': {
-            exports: 'x',
-            deps: ['forShimDep']
-        },
-        'forShimeDep': {
-            exports : 'message'
         }
-
     }
 });
 
 define(['jquery', 'bootstrap', 'angular'], function ($, bootstrap, angular) {
 	angular.module('myAppName', ['angularCouch']);
-    $(function () {
+   // $(function () {
 		require(['app'], function(){
 			angular.bootstrap('body', ['myAppName']);
 		});
-    });
+    //});
 });
