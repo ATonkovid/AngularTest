@@ -13,6 +13,7 @@ define(['angular', 'task', 'comment'], function (angular, $, task, comment) {
 
 		$scope.Filter = "";
 		$scope.Tasks = [];
+		$scope.NameOfButtonComments = "Show comments";
 		$scope.toglleCheck = function (task) {
 			Task.put(task);
 		}
@@ -31,19 +32,18 @@ define(['angular', 'task', 'comment'], function (angular, $, task, comment) {
 				that.Tasks.splice(index, 1);
 			});
 		};
-	$scope.ShowComment = function (TaskToRemove) {
-		TaskToRemove.ShowCommentFlag = !TaskToRemove.ShowCommentFlag ;
-		var members = _.where($scope.CommentAll, { member: TaskToRemove._id });
-		for (i=0;i< members.length;i++){
-		TaskToRemove.comments.push(members[i]);
-		}
-		
-		
-		
+		$scope.ShowComment = function (TaskToRemove) {
+		    if (TaskToRemove.ShowCommentFlag) {
+		        TaskToRemove.NameOfButtonComments = "Show comments";
+		    }
+		    else {
+		        TaskToRemove.NameOfButtonComments = "Hide comments";
+		    }
+		TaskToRemove.ShowCommentFlag = !TaskToRemove.ShowCommentFlag ;	
 	};
 	
 	    $scope.addComment = function (member) {
-			var comment = { message: member.comment, member: member._id};
+	        var comment = { message: member.comment, task: member._id, date: new Date() };
 			Comment.post(comment).then(function () {
 				if (!member.comments) {
 					member.comments = [];

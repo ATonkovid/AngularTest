@@ -24,44 +24,49 @@
         .ng-cloak {
             display: none;
         }
-		.comments {
-    padding: 5px 10px;
-    margin: 5px;
-    border: 1px dotted #dadada;
-}
 
-.add-comment {
-    margin-top: 5px;
-}
+        .comments {
+            padding: 5px 10px;
+            margin-top: 5px;
+            border: 1px dotted #dadada;
+        }
 
-.comment {
-    position: relative;
-}
+        .add-comment {
+            margin-top: 5px;
+        }
 
-.comment-text {
-    padding: 5px 0 20px 0;
-}
+        .comment {
+            position: relative;           
+        }
 
-.comment-date {
-    font-size: 10px;
-    bottom: 10px;
-    right: 0;
-    position: absolute;
-    color: #dadada;
-}
+        .comment-text {
+            padding: 20px 0 20px 20px;
+            color: GrayText;
+            font-size: 13px;
+        }
 
-.delete-comment {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    color: #dadada;
-    cursor: pointer;
-    font-size: 10px;
-}
+        .comment-date {
+            font-size: 10px;
+            bottom: 10px;
+            right: 0;
+            position: absolute;
+            color: #dadada;
+        }
 
-    .delete-comment:hover {
-        color: black;
-    }
+        .delete-comment {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            color: #dadada;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+            .delete-comment:hover {
+                color: black;
+            }
+ 
+
     </style>
     <script src="require.js" data-main="main"></script>
 
@@ -102,33 +107,37 @@
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Дія <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><span class="Pointer" ng-click="removeTask(Task)" />DELETE</a></li>
-								<li><a href="#"><span class="Pointer" ng-click="ShowComment(Task)" />Комментарий</a></li>
+                                <li><a href="#"><span class="Pointer" ng-click="removeTask(Task)" />DELETE</a></li>                                
                             </ul>
                         </div>
 
                     </div>
-					
-					
-					<div ng-show="Task.ShowCommentFlag" >				
-				      <div ng-repeat="comment in Task.comments" class="comment">
-                        <div ng-bind="comment.message" class="comment-text"></div>                    
-                        <i class="delete-comment glyphicon glyphicon-remove" ng-click="deleteComment(Task, comment)"></i>
-                        <hr />
-                      </div>
-				
-				 
-				      <textarea rows="2" class="form-control" ng-model="Task.comment" placeholder="Leave a comment here..."></textarea>
-				      <button type="button" class="btn btn-success pull-right add-comment"  ng-click="addComment(Task)">
-					  <i class="glyphicon glyphicon-comment" ></i> Add comment</button>
-				      <div class="clearfix"></div> 
-				
-				  
-				    </div>
+
+                   <label class="Pointer col-lg-offset-8" ng-click="ShowComment(Task)" />{{Task.NameOfButtonComments||NameOfButtonComments}}</label>
+                   
+                    <div ng-show="Task.ShowCommentFlag" class=" col-lg-offset-1 comments">
+                        <div ng-repeat="comment in Task.comments" class="comment">
+                            <ul class ="comment-text">
+                                <li ng-bind="comment.message"> </li>
+                            </ul>
+                            <span class="comment-date" ng-cloak>{{comment.date | date:'medium'}}</span>
+                            <i class="delete-comment glyphicon glyphicon-remove" ng-click="deleteComment(Task, comment)"></i>
+                            <hr />
+                        </div>
+
+
+                        <textarea rows="2" class="form-control" ng-model="Task.comment" placeholder="Leave a comment here..."></textarea>
+                        <button type="button" class="btn btn-success pull-right add-comment" ng-click="addComment(Task)">
+                            <i class="glyphicon glyphicon-comment"></i> Add comment
+                        </button>
+                        <div class="clearfix"></div>
+
+
+                    </div>
                 </div>
-				
-				
-				
+
+
+
 
             </div>
             <!--//-->
