@@ -65,6 +65,15 @@
             .delete-comment:hover {
                 color: black;
             }
+            .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    user-select: none
+}
  
 
     </style>
@@ -102,7 +111,7 @@
                         <span class="input-group-addon">
                             <input type="checkbox" id={{Tasks.indexOf(Task)}} ng-model="Task.checked" ng-change="toglleCheck(Task)" />
                         </span>
-                        <label for={{Tasks.indexOf(Task)}} class="form-control"><input type="hidden">{{Task.name}}</label>
+                        <label for={{Tasks.indexOf(Task)}} class="form-control no-select"><input type="hidden">{{Task.name}}</label>
 
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Дія <span class="caret"></span></button>
@@ -113,7 +122,7 @@
 
                     </div>
 
-                   <label class="Pointer col-lg-offset-8" ng-click="ShowComment(Task)" />{{Task.NameOfButtonComments||NameOfButtonComments}}</label>
+                   <label class="Pointer col-lg-offset-8 no-select" ng-click="ShowComment(Task)" />{{Task.NameOfButtonComments||NameOfButtonComments}}</label>
                    
                     <div ng-show="Task.ShowCommentFlag" class=" col-lg-offset-1 comments">
                         <div ng-repeat="comment in Task.comments" class="comment">
